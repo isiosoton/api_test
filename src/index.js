@@ -22,6 +22,18 @@ app.post("/", function (req, res) {
   request(options, function (error, response, body) {
     const buffer = new Buffer.from(body);
     console.log(buffer);
+    const option = {
+      uri: "https://leadhacktesteastjapan-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/3995706a-5622-438d-afce-71de27a57ca5/classify/iterations/Iteration1/image",
+      method: "post",
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Prediction-Key": "034d56b2970f4167b38c1278b84ecdb7",
+      },
+      body: buffer,
+    };
+    request.post(option, function (error, res, body) {
+      console.log(body);
+    });
   });
 });
 
