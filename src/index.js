@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/", function (req, res) {
   const data = req.body.events[0].message;
+  const replyToken = req.body["events"][0]["message"]["id"];
+
   console.log("req.body", data);
   res.send("api: OK");
   const options = {
@@ -19,6 +21,7 @@ app.post("/", function (req, res) {
     },
     encoding: null,
   };
+
   request(options, function (error, response, body) {
     const buffer = new Buffer.from(body);
     console.log(buffer);
@@ -31,8 +34,31 @@ app.post("/", function (req, res) {
       },
       body: buffer,
     };
+
     request.post(option, function (error, res, body) {
-      console.log(body);
+      // console.log(body);
+      // const resBody = JSON.parse(body);
+
+      const messageData = {
+        replyToken: replyToken,
+        messages: [
+          {
+            type: "text",
+            text: "res.OK",
+          },
+        ],
+      };
+
+      const optionsLine = {
+        uri: "https://api.line.me/v2/bot/message/reply",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + accessToken,
+        },
+        json: messageData,
+      };
+
+      request.post(optionsLine, function (error, res, body) {});
     });
   });
 });
