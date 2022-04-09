@@ -60,7 +60,7 @@ app.post("/", function (req, res) {
       };
 
       // const optionLINE = JSON.stringify(optionsLine);
-      request.post(optionLine, function (error, res, body) {
+      request.post(optionsLine, function (error, res, body) {
         console.log("test OK");
       });
     });
