@@ -59,8 +59,8 @@ app.post("/", function (req, res) {
         json: messageData,
       };
 
-      const optionLINE = JSON.stringify(optionsLine);
-      request.post(optionLINE, function (error, res, body) {
+      // const optionLINE = JSON.stringify(optionsLine);
+      request.post(optionLine, function (error, res, body) {
         console.log("test OK");
       });
     });
