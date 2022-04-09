@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/", function (req, res) {
   const data = req.body.events[0].message;
-  const replyToken = req.body["events"][0]["message"]["replyToken"];
+  const replyToken = req.body["events"][0]["replyToken"];
 
   console.log("req.body", data);
   res.send("api: OK");
