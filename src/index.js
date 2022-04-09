@@ -36,7 +36,7 @@ app.post("/", function (req, res) {
     };
 
     request.post(option, function (error, res, body) {
-      // console.log(body);
+      console.log(body);
       // const resBody = JSON.parse(body);
 
       const messageData = {
@@ -58,7 +58,10 @@ app.post("/", function (req, res) {
         json: messageData,
       };
 
-      request.post(optionsLine, function (error, res, body) {});
+      const optionLINE = JSON.stringify(optionsLine);
+      request.post(optionLINE, function (error, res, body) {
+        console.log("test OK");
+      });
     });
   });
 });
